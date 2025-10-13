@@ -1,20 +1,22 @@
 
 # Laporan Praktikum Minggu [X]
-Topik: [Tuliskan judul topik, misalnya "Arsitektur Sistem Operasi dan Kernel"]
+Topik: Arsitektur Sistem Operasi dan Kernel
 
 ---
 
 ## Identitas
-- **Nama**  : [Nama Mahasiswa]  
-- **NIM**   : [NIM Mahasiswa]  
-- **Kelas** : [Kelas]
+- **Nama**  : Novia Safitri  
+- **NIM**   : 250202923
+- **Kelas** : 1IKRA
 
 ---
 
 ## Tujuan
 Tuliskan tujuan praktikum minggu ini.  
-Contoh:  
-> Mahasiswa mampu menjelaskan fungsi utama sistem operasi dan peran kernel serta system call.
+1.Menjelaskan peran sistem operasi dalam arsitektur komputer.
+2.Mengidentifikasi komponen utama OS (kernel, system call, device driver, file system).
+3.Membandingkan model arsitektur OS (monolithic, layered, microkernel).
+4.Menggambarkan diagram sederhana arsitektur OS menggunakan alat bantu digital (draw.io / mermaid).
 
 ---
 
@@ -60,19 +62,23 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 ---
 
 ## Quiz
-1. [Pertanyaan 1]  
+1. Sebutkan tiga fungsi utama sistem operasi?  
+   Jawaban: Process management,Memory management,File management,Device management,User interface,and Security  
+2. Jelaskan perbedaan antara kernel mode dan user mode?  
    **Jawaban:**  
-2. [Pertanyaan 2]  
-   **Jawaban:**  
-3. [Pertanyaan 3]  
-   **Jawaban:**  
+3. Sebutkan contoh OS dengan arsitektur monolithic dan microkernel!  
+   Jawaban: -Monolithic : Linux,MS-DOS,FreeBSD
+            -Microkernel : Minix,QNX,L4 Microkernel,     
 
 ---
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
+-Apa bagian yang paling menantang minggu ini?
+  Bagian yang menantang minggu ini, bagi saya itu ketika mengerjakan matkul sistem operasi yang cara pengerjaan dan pengumpulannya sangat membingungkan sehingga saya lumayan kesulitan ketika mengerjakan tugasnya dan beberapa kali salah dalam mengunggah tugas sistem operasi   
 - Bagaimana cara Anda mengatasinya?  
+  Cara saya mengatasi hal tersebut saya melihat tutorial diyoutube atau tiktok dan ketika  masih bingung saya minta diajari teman yang sudah paham 
+---  
 
 ---
 
