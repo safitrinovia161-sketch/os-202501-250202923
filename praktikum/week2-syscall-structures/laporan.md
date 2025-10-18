@@ -88,22 +88,43 @@ Sertakan screenshot hasil percobaan atau diagram:
 Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 ---
+## Tugas
+A.Mengapa system cell penting untuk keamanan OS?
+System call sangat penting untuk keamanan sistem operasi karena memungkinkan OS mengontrol akses aplikasi ke sumber daya sistem. Bayangkan system call seperti "pintu masuk" yang dijaga ketat, sehingga OS bisa memastikan hanya permintaan yang aman yang diproses.
+Dengan system call, OS bisa mengontrol akses, mencegah serangan, mengamankan sistem, memantau perilaku aplikasi, dan menerapkan kebijakan keamanan. System call memungkinkan OS untuk memverifikasi identitas aplikasi dan pengguna, serta memeriksa apakah mereka memiliki hak akses yang diperlukan.
+System call juga membantu mencegah serangan seperti eskalasi hak istimewa, malware, dan virus yang dapat merusak sistem. Dengan demikian, system call sangat penting untuk menjaga keamanan dan stabilitas sistem operasi, serta melindungi data dan sumber daya sistem dari ancaman internal dan eksternal. System call juga memungkinkan OS untuk meningkatkan keamanan dengan memantau aktivitas sistem dan mendeteksi potensi ancaman.
+
+B.Bagaimana OS memastikan transisi user–kernel berjalan aman?
+ Untuk memastikan transisi antara mode pengguna (user mode) dan mode kernel (kernel mode) aman, sistem operasi (OS) menerapkan beberapa mekanisme penting. Berikut adalah cara-cara OS memastikan transisi yang aman:
+1. OS memisahkan mode CPU menjadi dua mode utama, yaitu mode pengguna (user mode) dan mode kernel (kernel mode). Dengan demikian, kode yang berjalan di mode pengguna tidak dapat langsung mengakses sumber daya kernel tanpa melalui prosedur yang terkontrol.
+2. Menggunakan System Call : System call adalah cara resmi bagi aplikasi di mode pengguna untuk meminta layanan dari kernel. Ketika aplikasi membutuhkan akses ke sumber daya kernel, seperti mengakses file atau jaringan, aplikasi tersebut akan melakukan system call. System call ini kemudian akan memicu interupsi yang menyebabkan CPU beralih dari mode pengguna ke mode kernel.
+3. Memvalidasi Akses Memori dan Izin : Sebelum menjalankan perintah yang diminta oleh system call, kernel akan memvalidasi apakah aplikasi yang melakukan system call memiliki izin yang diperlukan untuk mengakses sumber daya yang diminta. Kernel juga akan memeriksa apakah alamat memori yang diakses valid dan tidak melanggar batasan keamanan.
+4. Menerapkan Proteksi Hardware : OS juga menggunakan fitur proteksi hardware seperti ring level untuk memisahkan privilege level antara mode pengguna dan mode kernel. Ring level ini memastikan bahwa kode yang berjalan di mode pengguna tidak dapat mengakses sumber daya yang hanya dapat diakses oleh kernel. Selain itu, tabel interupsi juga digunakan untuk mengarahkan interupsi ke penanganan yang tepat di kernel.
+
+C.Sebutkan contoh system call yang sering digunakan di Linux.
+Sistem operasi (OS) Linux menggunakan system call sebagai antarmuka antara program pengguna dan kernel untuk melakukan operasi penting. System call memungkinkan program meminta layanan kernel untuk membuat proses baru, mengelola file, dan berkomunikasi antarproses. Contoh system call yang umum digunakan antara lain `fork()`, `exec()`, `wait()`, `exit()`, `getpid()`, `open()`, `read()`, `write()`, `close()`, `kill()`, `pipe()`, `chdir()`, `chmod()`, dan `sleep()`. Dengan menggunakan system call, program dapat berinteraksi dengan kernel untuk melakukan operasi yang tidak dapat dilakukan secara langsung di mode pengguna. Pemahaman tentang system call membantu memahami mekanisme kerja sistem operasi secara langsung. System call memiliki peran penting dalam pengelolaan proses dan sumber daya pada Linux, sehingga memungkinkan OS untuk mengontrol akses dan menjaga keamanan sistem secara efektif.
+
 
 ## Quiz
 1. Apa fungsi utama system call dalam sistem operasi?  
-   **Jawaban:**  
+   Jawaban: System call berperan sebagai jembatan komunikasi antara program pengguna dan kernel,program meminta layanan sistem operasi dengan cara yang aman dan terstandar. Ketika program membutuhkan akses ke sumber daya sistem seperti file, memori, proses, atau perangkat, system call menyediakan antarmuka yang terkendali untuk melakukan permintaan tersebut. System call memastikan permintaan tersebut diproses dengan aman dan terkendali, sehingga mencegah program pengguna mengakses sumber daya sistem secara tidak sah atau tidak terkendali dan system call membantu menjaga stabilitas dan keamanan sistem operasi
 2. Sebutkan 4 kategori system call yang umum digunakan.    
-   **Jawaban:**  
+   Jawaban: *Manajemen Berkas (File Management):Digunakan untuk membuat, membuka, membaca, menulis, dan menutup file.
+            *Manajemen Proses (Process Management):Digunakan untuk membuat, menjalankan, menghentikan, atau mengatur proses.
+            *Manajemen Memori (Memory Management):Digunakan untuk mengalokasikan, membebaskan, atau memetakan ruang memori.
+            *Komunikasi Antarproses (Interprocess Communication / IPC): Digunakan agar proses dapat saling bertukar data atau berkoordinasi.  
 3. Mengapa system call tidak bisa dipanggil langsung oleh user program?
-   **Jawaban:**  
+   Jawaban: System call tidak bisa dipanggil langsung oleh user program karena alasan keamanan, stabilitas, dan pengendalian akses dalam sistem operasi
+System call tidak bisa dipanggil langsung oleh user program karena alasan keamanan,stabilitas,dan pengendalian akses dalam sistem operasi.Dan alasan lain kenapa system call tidak bisa dipanggil oleh user program karena hanya kernel yang memiliki hak akses penuh ke sumber daya sistem. 
 
 ---
 
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
-
+- Apa bagian yang paling menantang minggu ini?
+  Sebenarnya hal yang paling menantang minggu adalah ketika mendapat tugas termasuknya matkul sistem operasi yang selalu menjadi pikiran setiap minggu ,karena tugas sistem operasi yang rumit cara penegrjaannya   
+- Bagaimana cara Anda mengatasinya?
+  Cara saya mengatasi hal tersebut dengan mengatur waktu untuk mengerjakan tugas satu persatu dan mengerjakan diluar kampus bareng teman-teman agar tidak terlalu stres ddengan tugas yang begitu banyak 
 ---
 
 **Credit:**  
