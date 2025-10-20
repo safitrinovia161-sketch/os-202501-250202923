@@ -78,10 +78,18 @@ Sertakan screenshot hasil percobaan atau diagram:
 ---
 
 ## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+- Jelaskan makna hasil percobaan.
+  Makna hasil percobaan :
+  *strace ls:strace membantu memahami dan menganalisis proses internal aplikasi secara detail,dan menampilkan setiap sistem call yang dilalukan oleh perintah ls.Ini menampilkan bagaimana  ls berinteraksi dengan kernel ,seperti membuka direktori,membaca file entri ,dan menutup file.
+ *strace -e trace=open,read,write,close cat /etc/passwd: Fokus pada pengoperasian file ,menampilkan bagaimana aplikasi mengakses file tersebut secara proses demi proses dan melacak system call yang hanya berhubungan dengan membuka ,membaca,menulis,dan menutup file saat menjalankan cat /etc/passwd.
+  * dmesg | tail -n 10: Menampilkan sekitar 10 baris log kernel yang biasanya berisi pesan penting terkait dengan perangkat keras,driver,atau error terbaru.ini berguna untuk melihat kejadian akhir yang dicatat oleh kernel dan membantu pemecahan masalah.   
 
+- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).
+  *System call:Hasil dari percobaan strace menampilkan secara nyata bagaimana aplikasi menggunakan system call berkomunikasi dengan kernel
+  *fungsi kernel:kernel berfungsi sebagai pengelola utama sumber daya sistem mengatur akses file dan perangkat keras.Saat melakukan strace cat /etc/passwd,kernel menerima dan memproses panggilan sistem contoh seperti buka,baca,dan tutup yang merupakan fungsi utama dalam mengakses file dan perangkat. 
+   *Arsitektur OS:Struktur dan prosesnya terekam dalam strace menggambarkan desain arsitektur dan berlapis dari Linux,dimana kernel melayani permintaan melalui system call dan kernel mengelola aktivitas perangkat keras secara terstruktur. 
+- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+  Perbedaan hasil yang muncul karena Linux seringkali lebih stabil, efisien, dan aman, cocok untuk server dan sistem yang memerlukan kestabilan tinggi. Windows lebih mudah digunakan untuk pengguna umum dengan dukungan aplikasi dan perangkat keras yang sangat luas. Jadi,hasil kedua OS ini akan berbeda tergantung kebutuhan, dengan Linux lebih kuat di sisi kinerja dan terkecil, sementara Windows unggul di sisi kemudahan dan dukungan perangkat.
 ---
 
 ## Kesimpulan
