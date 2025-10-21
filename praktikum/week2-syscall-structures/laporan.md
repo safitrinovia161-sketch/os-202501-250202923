@@ -73,7 +73,15 @@ dmesg | head
 
 ## Hasil Eksekusi
 Sertakan screenshot hasil percobaan atau diagram:
-![Screenshot hasil](screenshots/example.png)
+#Eksperimen 1
+![alt text](<screenshots/stracels1.png>)
+![alt text](<screenshots/stracels2.png>)
+#Eksperimen 2
+![alt text](<screenshots/strace -e.png>)
+#Eksperimen 3
+![alt text](<screenshots/dmesg.png>)
+#Diagram alur system call
+![alt text](<screenshots/diagram alur system call.png>)
 
 ---
 
@@ -97,18 +105,37 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 ---
 ## Tugas
+Dokumentasikan hasil eksperimen strace dan dmesg dalam bentuk tabel observasi.
+#strace ls
+|No|system call|fungsi|keterangan|
+|:---|:---|:---|:---|
+1|execve()|Menjalankan program baru diproses yang sama|Saat perintah ls dieksekusi,strace mencatat panggilan execve(bin/ls/environment variabless/)=0,nilai 0 menandakan eksekusiyang dijalankan berhasil|
+2|mmap()|Memetakan file atau memori ke area alamat proses|Mempercepat dan memudahkan pengelolaan memori selama perintah ls berjalan|
+3|Mprotect()|Mengubah izin akses halaman memori pada proses eksekusi|Mengontrol hak akses memori selama eksekusi ls |
+4|Statfs()|Mendapatkan informasi tentang sistem file|Statfs ("/sys/fs/selinux",...)=-1 ENOENT berarti proses mencoba membaca status file system di path|
+5|Openat()|Membuka file dengan cara menunjuk ke rektori tertentu yang sudah diketahui |ls membuka direktori saat dengan mode baca dan opsi lain yang sesuai untuk direktori|
+6|Access()|Mengontrol akses pengguna|Access menentukan apakah ls dapat membaca atau menampilakan file tersebut|
+7|Read()|Sebagai hak akses izin yang mengizinkan pengguna untuk melihat konten file atau isi direktori|Read proses pengambilan data mentah dari file sistem agar ls bisa memprosesnya|
+8|write()|Menulis data sebagai output|Read proses pengambilan data mentah dari file sistem agar ls bisa memprosesnya|Write menerima buffer berisi data yang akan ditampilkan dan jumlah byte yang harus ditulis dilayar| 
+9|Close()|Menutup file yang digunakan dalam program |Close menunjukan dekriptor filr mana yang ditutup dana kode return o untuk sukses|
+
+
+
+#dmesg
+|No|system call|fungsi|keterangan|
+|:---|:---|:---|:---|
+
+
 A.Mengapa system cell penting untuk keamanan OS?
 System call sangat penting untuk keamanan sistem operasi karena memungkinkan OS mengontrol akses aplikasi ke sumber daya sistem. Bayangkan system call seperti "pintu masuk" yang dijaga ketat, sehingga OS bisa memastikan hanya permintaan yang aman yang diproses.
 Dengan system call, OS bisa mengontrol akses, mencegah serangan, mengamankan sistem, memantau perilaku aplikasi, dan menerapkan kebijakan keamanan. System call memungkinkan OS untuk memverifikasi identitas aplikasi dan pengguna, serta memeriksa apakah mereka memiliki hak akses yang diperlukan.
 System call juga membantu mencegah serangan seperti eskalasi hak istimewa, malware, dan virus yang dapat merusak sistem. Dengan demikian, system call sangat penting untuk menjaga keamanan dan stabilitas sistem operasi, serta melindungi data dan sumber daya sistem dari ancaman internal dan eksternal. System call juga memungkinkan OS untuk meningkatkan keamanan dengan memantau aktivitas sistem dan mendeteksi potensi ancaman.
-
 B.Bagaimana OS memastikan transisi user–kernel berjalan aman?
  Untuk memastikan transisi antara mode pengguna (user mode) dan mode kernel (kernel mode) aman, sistem operasi (OS) menerapkan beberapa mekanisme penting. Berikut adalah cara-cara OS memastikan transisi yang aman:
 1. OS memisahkan mode CPU menjadi dua mode utama, yaitu mode pengguna (user mode) dan mode kernel (kernel mode). Dengan demikian, kode yang berjalan di mode pengguna tidak dapat langsung mengakses sumber daya kernel tanpa melalui prosedur yang terkontrol.
 2. Menggunakan System Call : System call adalah cara resmi bagi aplikasi di mode pengguna untuk meminta layanan dari kernel. Ketika aplikasi membutuhkan akses ke sumber daya kernel, seperti mengakses file atau jaringan, aplikasi tersebut akan melakukan system call. System call ini kemudian akan memicu interupsi yang menyebabkan CPU beralih dari mode pengguna ke mode kernel.
 3. Memvalidasi Akses Memori dan Izin : Sebelum menjalankan perintah yang diminta oleh system call, kernel akan memvalidasi apakah aplikasi yang melakukan system call memiliki izin yang diperlukan untuk mengakses sumber daya yang diminta. Kernel juga akan memeriksa apakah alamat memori yang diakses valid dan tidak melanggar batasan keamanan.
 4. Menerapkan Proteksi Hardware : OS juga menggunakan fitur proteksi hardware seperti ring level untuk memisahkan privilege level antara mode pengguna dan mode kernel. Ring level ini memastikan bahwa kode yang berjalan di mode pengguna tidak dapat mengakses sumber daya yang hanya dapat diakses oleh kernel. Selain itu, tabel interupsi juga digunakan untuk mengarahkan interupsi ke penanganan yang tepat di kernel.
-
 C.Sebutkan contoh system call yang sering digunakan di Linux.
 Sistem operasi (OS) Linux menggunakan system call sebagai antarmuka antara program pengguna dan kernel untuk melakukan operasi penting. System call memungkinkan program meminta layanan kernel untuk membuat proses baru, mengelola file, dan berkomunikasi antarproses. Contoh system call yang umum digunakan antara lain `fork()`, `exec()`, `wait()`, `exit()`, `getpid()`, `open()`, `read()`, `write()`, `close()`, `kill()`, `pipe()`, `chdir()`, `chmod()`, dan `sleep()`. Dengan menggunakan system call, program dapat berinteraksi dengan kernel untuk melakukan operasi yang tidak dapat dilakukan secara langsung di mode pengguna. Pemahaman tentang system call membantu memahami mekanisme kerja sistem operasi secara langsung. System call memiliki peran penting dalam pengelolaan proses dan sumber daya pada Linux, sehingga memungkinkan OS untuk mengontrol akses dan menjaga keamanan sistem secara efektif.
 
