@@ -132,10 +132,12 @@ Dokumentasikan hasil eksperimen strace dan dmesg dalam bentuk tabel observasi.
 #dmesg
 |No|Perintah|System call|Fungsi|keterangan|
 |:---|:---|:---|:---|:---|
-1|dmesg|EXT4|||
-2|dmesg|LoadPin:kernel-module-pinning-exluded|||
-3|dmesg|modprob||||
-4|dmesg|cni0||||
+1|dmesg|mount EXT4 filesystem|Menghubungkan filesystem EXT4 ke sistem daftar Linux sehingga file dan data didalamnya dapat diakses dan digunakan oleh pengguna|Penyimpanan /dev/sdb1 berhasil dipasang dengan sistem file EXT4 dalam mode read/write,menggunakan odered journaling untuk menjaga keutuhan|
+2|dmesg|LoadPin:kernel-module-pinning-exluded|Memastikan modul kernel hanya dimuat dari sumber terpercaya|Mekanisme keamanan kernel Linux,LoadPin melindungi dengan membatasi sumber modul kernel,namun tetap memberi pengecualian kepada modul terpercaya agar sistem tetap stabil|
+3|dmesg|modprob()|Mengatur pemuatan dan penghapusan modul kernel di Linux secara otomatis|Perintah ModProb digunakan untuk memuat modul kernel tertentu ke sistem ,dan hasilnya terlihat dipesan bahwa modul berhasil dimuat tanpa error|
+4|dmesg|read()dan write()|Membaca isi file dari disk dan menulis ke ruang kernel|Terjadi saat kernel membaca isi file modul (.ko) dan menuliskannya ke memory kernel|
+5|dmesg|setns()|Konfigurasi jaringan (network namespace dan firewall)|Saat kernel memuat modul netfilter atau iptables, terjadi pemanggilan system call untuk mengatur namespace dan komunikasi jaringan anatr proses kernel|
+
 
 A.Mengapa system cell penting untuk keamanan OS?
 System call sangat penting untuk keamanan sistem operasi karena memungkinkan OS mengontrol akses aplikasi ke sumber daya sistem. Bayangkan system call seperti "pintu masuk" yang dijaga ketat, sehingga OS bisa memastikan hanya permintaan yang aman yang diproses.
