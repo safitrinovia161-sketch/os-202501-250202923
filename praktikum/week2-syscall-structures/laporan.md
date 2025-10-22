@@ -52,8 +52,11 @@ dmesg | tail -n 10
 Amati log kernel yang muncul. Apa bedanya output ini dengan output dari program biasa?
 
 5. Diagram Alur System Call
+
 Buat diagram yang menggambarkan alur eksekusi system call dari program user hingga kernel dan kembali lagi ke user mode.
+
 Gunakan draw.io / mermaid.
+
 Simpan di:
 praktikum/week2-syscall-structure/screenshots/syscall-diagram.png
 
