@@ -13,37 +13,42 @@ Topik: Arsitektur Sistem Operasi dan Kernel
 
 ## Tujuan
 
-1. Mahasiswa mampu menjelaskan konsep dan fungsi system call dalam sistem operasi.
-2. Mahasiswa mampu mengidentifikasi jenis-jenis system call dan fungsinya.
-3. Mahasiswa mampu mengamati alur perpindahan mode user ke kernel saat system call terjadi.
-4. Mahasiswa mampu menggunakan perintah Linux untuk menampilkan dan menganalisis system call.
+1. Menjelaskan konsep dan fungsi system call dalam sistem operasi.
+2. Mengidentifikasi jenis-jenis system call dan fungsinya.
+3. Mengamati alur perpindahan mode user ke kernel saat system call terjadi.
+4. Menggunakan perintah Linux untuk menampilkan dan menganalisis system call.
 
 ---
 
 ## Dasar Teori
-Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
+System call adalah cara program aplikasi berkomunikasi dengan sistem operasi untuk meminta layanan penting seperti mengakses file,perangkat keras dan menejeman proses.Saat system cal dipanggil,CPU berpindah dari mode user ke mode kernel untuk menjalankan perintah dengan aman,lalu kembali ke mode user setelah selesai.Di Linux perintah seperti strace dapat digunakan untuk melihat dan menganalisis system call yang sedang berlangsung dalam suatu program.
 
 ---
 
 ## Langkah Praktikum
 1. Setup Environment
+
 Gunakan Linux (Ubuntu/WSL).
 Pastikan perintah strace dan man sudah terinstal.
 Konfigurasikan Git (jika belum dilakukan di minggu sebelumnya).
 
 2. Eksperimen 1 – Analisis System Call Jalankan perintah berikut:
+
 strace ls
+
 Catat 5–10 system call pertama yang muncul dan jelaskan fungsinya.
 Simpan hasil analisis ke results/syscall_ls.txt.
 
 3. Eksperimen 2 – Menelusuri System Call File I/O Jalankan:
 
 strace -e trace=open,read,write,close cat /etc/passwd
+
 Analisis bagaimana file dibuka, dibaca, dan ditutup oleh kernel.
 
 4. Eksperimen 3 – Mode User vs Kernel Jalankan:
 
 dmesg | tail -n 10
+
 Amati log kernel yang muncul. Apa bedanya output ini dengan output dari program biasa?
 
 5. Diagram Alur System Call
@@ -101,7 +106,7 @@ Sertakan screenshot hasil percobaan atau diagram:
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+Dari ketiga eksperimen tersebut menunjukan bagaimana systen call merupakan jembatan penting anatara aplikasi dan kernel dalam mengakses komponen komputer.Dengan strace ls ,terlihat perintah ls melakukan serangkaian system cal untuk membaca difolder dan file.Eksperimen strace -e trace=open,read,write,close cat /etc/passwd menampilakn secara jelas proses membuka,membaca,menulis dan menutup file yang menjadi operasi dasar akses file di sistem.Dan eksperimen dmesg | tail -n 10 memberikan gambaran tentang log kernel terbaru,yang berguna untuk pemantauan dan proses memperbaiki kesalahan sistem . Ketiga eksperimen ini menampilkan interaksi nyata anatar user space dan kernel ,menampilkan bagaiamana kernel mengelola permintaan aplikasi untuk menjaga sistem berjalan yang efisisen dan stabil.
 
 ---
 ## Tugas
@@ -130,13 +135,18 @@ A.Mengapa system cell penting untuk keamanan OS?
 System call sangat penting untuk keamanan sistem operasi karena memungkinkan OS mengontrol akses aplikasi ke sumber daya sistem. Bayangkan system call seperti "pintu masuk" yang dijaga ketat, sehingga OS bisa memastikan hanya permintaan yang aman yang diproses.
 Dengan system call, OS bisa mengontrol akses, mencegah serangan, mengamankan sistem, memantau perilaku aplikasi, dan menerapkan kebijakan keamanan. System call memungkinkan OS untuk memverifikasi identitas aplikasi dan pengguna, serta memeriksa apakah mereka memiliki hak akses yang diperlukan.
 System call juga membantu mencegah serangan seperti eskalasi hak istimewa, malware, dan virus yang dapat merusak sistem. Dengan demikian, system call sangat penting untuk menjaga keamanan dan stabilitas sistem operasi, serta melindungi data dan sumber daya sistem dari ancaman internal dan eksternal. System call juga memungkinkan OS untuk meningkatkan keamanan dengan memantau aktivitas sistem dan mendeteksi potensi ancaman.
+
+
 B.Bagaimana OS memastikan transisi user–kernel berjalan aman?
+
  Untuk memastikan transisi antara mode pengguna (user mode) dan mode kernel (kernel mode) aman, sistem operasi (OS) menerapkan beberapa mekanisme penting. Berikut adalah cara-cara OS memastikan transisi yang aman:
 1. OS memisahkan mode CPU menjadi dua mode utama, yaitu mode pengguna (user mode) dan mode kernel (kernel mode). Dengan demikian, kode yang berjalan di mode pengguna tidak dapat langsung mengakses sumber daya kernel tanpa melalui prosedur yang terkontrol.
 2. Menggunakan System Call : System call adalah cara resmi bagi aplikasi di mode pengguna untuk meminta layanan dari kernel. Ketika aplikasi membutuhkan akses ke sumber daya kernel, seperti mengakses file atau jaringan, aplikasi tersebut akan melakukan system call. System call ini kemudian akan memicu interupsi yang menyebabkan CPU beralih dari mode pengguna ke mode kernel.
 3. Memvalidasi Akses Memori dan Izin : Sebelum menjalankan perintah yang diminta oleh system call, kernel akan memvalidasi apakah aplikasi yang melakukan system call memiliki izin yang diperlukan untuk mengakses sumber daya yang diminta. Kernel juga akan memeriksa apakah alamat memori yang diakses valid dan tidak melanggar batasan keamanan.
 4. Menerapkan Proteksi Hardware : OS juga menggunakan fitur proteksi hardware seperti ring level untuk memisahkan privilege level antara mode pengguna dan mode kernel. Ring level ini memastikan bahwa kode yang berjalan di mode pengguna tidak dapat mengakses sumber daya yang hanya dapat diakses oleh kernel. Selain itu, tabel interupsi juga digunakan untuk mengarahkan interupsi ke penanganan yang tepat di kernel.
+
 C.Sebutkan contoh system call yang sering digunakan di Linux.
+
 Sistem operasi (OS) Linux menggunakan system call sebagai antarmuka antara program pengguna dan kernel untuk melakukan operasi penting. System call memungkinkan program meminta layanan kernel untuk membuat proses baru, mengelola file, dan berkomunikasi antarproses. Contoh system call yang umum digunakan antara lain `fork()`, `exec()`, `wait()`, `exit()`, `getpid()`, `open()`, `read()`, `write()`, `close()`, `kill()`, `pipe()`, `chdir()`, `chmod()`, dan `sleep()`. Dengan menggunakan system call, program dapat berinteraksi dengan kernel untuk melakukan operasi yang tidak dapat dilakukan secara langsung di mode pengguna. Pemahaman tentang system call membantu memahami mekanisme kerja sistem operasi secara langsung. System call memiliki peran penting dalam pengelolaan proses dan sumber daya pada Linux, sehingga memungkinkan OS untuk mengontrol akses dan menjaga keamanan sistem secara efektif.
 
 
@@ -157,9 +167,11 @@ System call tidak bisa dipanggil langsung oleh user program karena alasan keaman
 ## Refleksi Diri
 Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?
-  Sebenarnya hal yang paling menantang minggu adalah ketika mendapat tugas termasuknya matkul sistem operasi yang selalu menjadi pikiran setiap minggu ,karena tugas sistem operasi yang rumit cara penegrjaannya   
+
+   Sebenarnya hal yang paling menantang minggu adalah ketika mendapat tugas termasuknya matkul sistem operasi yang selalu menjadi pikiran setiap minggu ,karena tugas sistem operasi yang rumit cara penegrjaannya   
 - Bagaimana cara Anda mengatasinya?
-  Cara saya mengatasi hal tersebut dengan mengatur waktu untuk mengerjakan tugas satu persatu dan mengerjakan diluar kampus bareng teman-teman agar tidak terlalu stres ddengan tugas yang begitu banyak 
+
+   Cara saya mengatasi hal tersebut dengan mengatur waktu untuk mengerjakan tugas satu persatu dan mengerjakan diluar kampus bareng teman-teman agar tidak terlalu stres ddengan tugas yang begitu banyak 
 ---
 
 **Credit:**  
