@@ -114,8 +114,10 @@ Dari ketiga eksperimen tersebut menunjukan bagaimana systen call merupakan jemba
 ---
 ## Tugas
 Dokumentasikan hasil eksperimen strace dan dmesg dalam bentuk tabel observasi.
+
 #strace ls
-|No|strace|system call|fungsi|keterangan|
+
+|No|Perintah|system call|fungsi|keterangan|
 |:---|:---|:---|:---|:---|
 1|strace|execve()|Menjalankan program baru diproses yang sama|Saat perintah ls dieksekusi,strace mencatat panggilan execve(bin/ls/environment variabless/)=0,nilai 0 menandakan eksekusiyang dijalankan berhasil|
 2|strace|mmap()|Memetakan file atau memori ke area alamat proses|Mempercepat dan memudahkan pengelolaan memori selama perintah ls berjalan|
