@@ -92,17 +92,20 @@ Sertakan screenshot hasil percobaan atau diagram:
 
 ## Analisis
 - Jelaskan makna hasil percobaan.
-  Makna hasil percobaan :
+
+   Makna hasil percobaan :
   *strace ls:strace membantu memahami dan menganalisis proses internal aplikasi secara detail,dan menampilkan setiap sistem call yang dilalukan oleh perintah ls.Ini menampilkan bagaimana  ls berinteraksi dengan kernel ,seperti membuka direktori,membaca file entri ,dan menutup file.
  *strace -e trace=open,read,write,close cat /etc/passwd: Fokus pada pengoperasian file ,menampilkan bagaimana aplikasi mengakses file tersebut secara proses demi proses dan melacak system call yang hanya berhubungan dengan membuka ,membaca,menulis,dan menutup file saat menjalankan cat /etc/passwd.
   * dmesg | tail -n 10: Menampilkan sekitar 10 baris log kernel yang biasanya berisi pesan penting terkait dengan perangkat keras,driver,atau error terbaru.ini berguna untuk melihat kejadian akhir yang dicatat oleh kernel dan membantu pemecahan masalah.   
 
 - Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).
-  *System call:Hasil dari percobaan strace menampilkan secara nyata bagaimana aplikasi menggunakan system call berkomunikasi dengan kernel
+
+   *System call:Hasil dari percobaan strace menampilkan secara nyata bagaimana aplikasi menggunakan system call berkomunikasi dengan kernel
   *fungsi kernel:kernel berfungsi sebagai pengelola utama sumber daya sistem mengatur akses file dan perangkat keras.Saat melakukan strace cat /etc/passwd,kernel menerima dan memproses panggilan sistem contoh seperti buka,baca,dan tutup yang merupakan fungsi utama dalam mengakses file dan perangkat. 
    *Arsitektur OS:Struktur dan prosesnya terekam dalam strace menggambarkan desain arsitektur dan berlapis dari Linux,dimana kernel melayani permintaan melalui system call dan kernel mengelola aktivitas perangkat keras secara terstruktur. 
 - Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
-  Perbedaan hasil yang muncul karena Linux seringkali lebih stabil, efisien, dan aman, cocok untuk server dan sistem yang memerlukan kestabilan tinggi. Windows lebih mudah digunakan untuk pengguna umum dengan dukungan aplikasi dan perangkat keras yang sangat luas. Jadi,hasil kedua OS ini akan berbeda tergantung kebutuhan, dengan Linux lebih kuat di sisi kinerja dan terkecil, sementara Windows unggul di sisi kemudahan dan dukungan perangkat.
+
+   Perbedaan hasil yang muncul karena Linux seringkali lebih stabil, efisien, dan aman, cocok untuk server dan sistem yang memerlukan kestabilan tinggi. Windows lebih mudah digunakan untuk pengguna umum dengan dukungan aplikasi dan perangkat keras yang sangat luas. Jadi,hasil kedua OS ini akan berbeda tergantung kebutuhan, dengan Linux lebih kuat di sisi kinerja dan terkecil, sementara Windows unggul di sisi kemudahan dan dukungan perangkat.
 ---
 
 ## Kesimpulan
@@ -112,24 +115,27 @@ Dari ketiga eksperimen tersebut menunjukan bagaimana systen call merupakan jemba
 ## Tugas
 Dokumentasikan hasil eksperimen strace dan dmesg dalam bentuk tabel observasi.
 #strace ls
-|No|system call|fungsi|keterangan|
-|:---|:---|:---|:---|
-1|execve()|Menjalankan program baru diproses yang sama|Saat perintah ls dieksekusi,strace mencatat panggilan execve(bin/ls/environment variabless/)=0,nilai 0 menandakan eksekusiyang dijalankan berhasil|
-2|mmap()|Memetakan file atau memori ke area alamat proses|Mempercepat dan memudahkan pengelolaan memori selama perintah ls berjalan|
-3|Mprotect()|Mengubah izin akses halaman memori pada proses eksekusi|Mengontrol hak akses memori selama eksekusi ls |
-4|Statfs()|Mendapatkan informasi tentang sistem file|Statfs ("/sys/fs/selinux",...)=-1 ENOENT berarti proses mencoba membaca status file system di path|
-5|Openat()|Membuka file dengan cara menunjuk ke rektori tertentu yang sudah diketahui |ls membuka direktori saat dengan mode baca dan opsi lain yang sesuai untuk direktori|
-6|Access()|Mengontrol akses pengguna|Access menentukan apakah ls dapat membaca atau menampilakan file tersebut|
-7|Read()|Sebagai hak akses izin yang mengizinkan pengguna untuk melihat konten file atau isi direktori|Read proses pengambilan data mentah dari file sistem agar ls bisa memprosesnya|
-8|write()|Menulis data sebagai output|Read proses pengambilan data mentah dari file sistem agar ls bisa memprosesnya|Write menerima buffer berisi data yang akan ditampilkan dan jumlah byte yang harus ditulis dilayar| 
-9|Close()|Menutup file yang digunakan dalam program |Close menunjukan dekriptor filr mana yang ditutup dana kode return o untuk sukses|
+|No|strace|system call|fungsi|keterangan|
+|:---|:---|:---|:---|:---|
+1|strace|execve()|Menjalankan program baru diproses yang sama|Saat perintah ls dieksekusi,strace mencatat panggilan execve(bin/ls/environment variabless/)=0,nilai 0 menandakan eksekusiyang dijalankan berhasil|
+2|strace|mmap()|Memetakan file atau memori ke area alamat proses|Mempercepat dan memudahkan pengelolaan memori selama perintah ls berjalan|
+3|strace|Mprotect()|Mengubah izin akses halaman memori pada proses eksekusi|Mengontrol hak akses memori selama eksekusi ls |
+4|strace|Statfs()|Mendapatkan informasi tentang sistem file|Statfs ("/sys/fs/selinux",...)=-1 ENOENT berarti proses mencoba membaca status file system di path|
+5|strace|Openat()|Membuka file dengan cara menunjuk ke rektori tertentu yang sudah diketahui |ls membuka direktori saat dengan mode baca dan opsi lain yang sesuai untuk direktori|
+6|strace|Access()|Mengontrol akses pengguna|Access menentukan apakah ls dapat membaca atau menampilakan file tersebut|
+7|strace|Read()|Sebagai hak akses izin yang mengizinkan pengguna untuk melihat konten file atau isi direktori|Read proses pengambilan data mentah dari file sistem agar ls bisa memprosesnya|
+8|strace|write()|Menulis data sebagai output|Read proses pengambilan data mentah dari file sistem agar ls bisa memprosesnya|Write menerima buffer berisi data yang akan ditampilkan dan jumlah byte yang harus ditulis dilayar| 
+9|strace|Close()|Menutup file yang digunakan dalam program |Close menunjukan dekriptor filr mana yang ditutup dana kode return o untuk sukses|
 
 
 
 #dmesg
-|No|system call|fungsi|keterangan|
-|:---|:---|:---|:---|
-
+|No|Perintah|System call|Fungsi|keterangan|
+|:---|:---|:---|:---|:---|
+1|dmesg|EXT4|||
+2|dmesg|LoadPin:kernel-module-pinning-exluded|||
+3|dmesg|modprob||||
+4|dmesg|cni0||||
 
 A.Mengapa system cell penting untuk keamanan OS?
 System call sangat penting untuk keamanan sistem operasi karena memungkinkan OS mengontrol akses aplikasi ke sumber daya sistem. Bayangkan system call seperti "pintu masuk" yang dijaga ketat, sehingga OS bisa memastikan hanya permintaan yang aman yang diproses.
@@ -171,7 +177,7 @@ Tuliskan secara singkat:
    Sebenarnya hal yang paling menantang minggu adalah ketika mendapat tugas termasuknya matkul sistem operasi yang selalu menjadi pikiran setiap minggu ,karena tugas sistem operasi yang rumit cara penegrjaannya   
 - Bagaimana cara Anda mengatasinya?
 
-   Cara saya mengatasi hal tersebut dengan mengatur waktu untuk mengerjakan tugas satu persatu dan mengerjakan diluar kampus bareng teman-teman agar tidak terlalu stres ddengan tugas yang begitu banyak 
+   Cara saya mengatasi hal tersebut saya mengatur waktu untuk mengerjakan tugas satu persatu dan mengerjakan diluar kampus bareng teman-teman agar tidak terlalu stres ddengan tugas yang begitu banyak. 
 ---
 
 **Credit:**  
