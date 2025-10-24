@@ -26,7 +26,7 @@ Topik: Arsitektur Sistem Operasi dan Kernel
 ---
 
 ## Dasar Teori
-Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
+File dan direktori di Linux tersusu seperti pohon dengan satu titik awal yang disebut root (/).Setiap file memiliki pemilik dan grup yang mengatur hak akses membaca,menulis ,dan menjalankan file.Hak akses file ini penting untuk keamanan dan dapat diubah dengan perintah khusus agar hanya pengguna yang berhak mengakses file.
 
 ---
 
@@ -36,49 +36,50 @@ Tuliskan ringkasan teori (3–5 poin) yang mendasari percobaan.
 Gunakan Linux (Ubuntu/WSL).
 Pastikan folder kerja berada di dalam direktori repositori Git praktikum:
 
-praktikum/week3-linux-fs-permission/
+     praktikum/week3-linux-fs-permission/
 
 2.Eksperimen 1 – Navigasi Sistem File Jalankan perintah berikut:
 
-pwd
-ls -l
-cd /tmp
-ls -a
-
+     pwd
+    ls -l
+    cd /tmp
+    ls -a
 Jelaskan hasil tiap perintah.
 
 Catat direktori aktif, isi folder, dan file tersembunyi (jika ada).
 
 3.Eksperimen 2 – Membaca File Jalankan perintah:
 
-cat /etc/passwd | head -n 5
+    cat /etc/passwd | head -n 5
 
 Jelaskan isi file dan struktur barisnya (user, UID, GID, home, shell).
 
 4.Eksperimen 3 – Permission & Ownership Buat file baru:
 
-echo "Hello <NAME><NIM>" > percobaan.txt
-ls -l percobaan.txt
-chmod 600 percobaan.txt
-ls -l percobaan.txt
+     echo "Hello <NAME><NIM>" > percobaan.txt
+     ls -l percobaan.txt
+    chmod 600 percobaan.txt
+    ls -l percobaan.txt
 
 Analisis perbedaan sebelum dan sesudah chmod.
 Ubah pemilik file (jika memiliki izin sudo):
 
-sudo chown root percobaan.txt
-ls -l percobaan.txt
+     sudo chown root percobaan.txt
+     ls -l percobaan.txt
 Catat hasilnya.
 
 5.Eksperimen 4 – Dokumentasi
-
 Ambil screenshot hasil terminal dan simpan di:
-praktikum/week3-linux-fs-permission/screenshots/
+
+     
+    praktikum/week3-linux-fs-permission/screenshots/
 Tambahkan analisis hasil pada laporan.md.
+
 Commit & Push
 
-git add .
-git commit -m "Minggu 3 - Linux File System & Permission"
-git push origin main
+     git add .
+    git commit -m "Minggu 3 - Linux File System & Permission"
+    git push origin main
 
 
 ---
@@ -113,14 +114,25 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 ## Quiz
 1. Apa fungsi dari perintah chmod?
-   **Jawaban:**  
-2. Apa arti dari kode permission rwxr-xr--?
-   **Jawaban:**  
-3. Jelaskan perbedaan antara chown dan chmod.
-   **Jawaban:**  
 
----
+    Jawaban: Chmod berfungsi dalam mengendalikan akses agar proses dan pengelolaan file di sistem Linux dapat berjalan dengan aman dan efisien.
+3. Apa arti dari kode permission rwxr-xr--?
 
+    Jawaban: -rwx:pemilik file bisa membaca ,menulis,dan menjalankan file
+             -rx:grup hanya bisa baca dan jalankan ,tidak bisa mengubah file
+             -r--:pengguna lain hanya bisa membaca,tidak bisa menulis atau               menjakankan.
+   Ini cara linux mengtaur siapa yang boleh mengakses dan apa yang boleh mereka lakukan pada file tersebut.
+5. Jelaskan perbedaan antara chown dan chmod.
+   Jawaban:
+
+Aspek | Chown | Chmod |
+  |:--- | :--- | :---|
+  Fungsi|Mengganti siapa pemilik dan grup file|Mengatur hak akses yaitu baca,tulis dan eksekusi|
+Apa yang diubah|Pemilik(user) file|Izin baca ,tulis ,dan eksekusi|
+contoh |Chown user file.txt|Chomod 755 file.txt|
+tujuan|Atur siapa pemilik file|Atur siapa yang bisa akses|
+siapa yang bisa akses|Pemilik/admin|Pemilik filedan admin|
+Perhatian khusus|Harus punya izin atau sebagai root|Digunakan untuk membatasi atau memberi akses|
 ## Refleksi Diri
 Tuliskan secara singkat:
 - Apa bagian yang paling menantang minggu ini?  
