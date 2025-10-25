@@ -101,7 +101,9 @@ Sertakan screenshot hasil percobaan atau diagram:
 ---
 
 ## Analisis
-- Jelaskan makna hasil percobaan.  
+- Jelaskan makna hasil percobaan.
+
+ 
 - Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
 - Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
 
@@ -111,7 +113,8 @@ Sertakan screenshot hasil percobaan atau diagram:
 Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
 
-## Tugas 
+## Tugas
+ 1.Dokumentasikan hasil seluruh perintah pada tabel observasi 
 | No | Perintah | Fungsi|Hasil/output|Keterangan|
 | :--- | :---|:---|:---|:---|
 1|pwd|Menampilkan direktori aktif|/home/safitrinovia/|Pengguna sedang berada di direktori homenya sendiri|
@@ -124,7 +127,28 @@ Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 8|chmod 600 percobaan.txt|Mengubah izin akses file menjadi r-x------|tidak ada output|File hanya bisa dibaca dan dijalankan oleh pemilik(NOVIA SAFITRI), tidak bisa diubah oleh pengguna lain|
 9|ls -l percobaan.txt|Mengecek perubahan izin |-rw-------1 safitrinovia safitrinovia 32 Oct 24 20:34 percobaan.txt|Terbaca bahwa izin file sudah berubah, grup dan pengguna lain sudah tidak memiliki akses sama sekali|
 10|sudo chown root percobaan.txt|Mengubah kepemilikan file menjadi milik pengguna yaitu novia safitri menjadi root|Sekarang file dimiliki oleh root, bukan lagi oleh safitrinovia|chown ubah pemilik/grup dari file; sudo jalankan perintah sebagai admin.Dan sekarang hanya root yang berhak mengakses file seutuhnya|
-11|ls -l percobaan.txt|Mengecek perubahan kepemilikan|-rw------- 1 root NOVIA SAFITRI 32 Oct 24 20:34 percobaan.txt|Sekarang pemilik file adalah root sedangkan grup masih milik evelin dan file sudah menjadi milik sistem|
+11|ls -l percobaan.txt|Mengecek perubahan kepemilikan|-rw------- 1 root NOVIA SAFITRI 32 Oct 24 20:34 percobaan.txt|Sekarang pemilik file adalah root sedangkan grup masih milik novia safitri dan file sudah menjadi milik sistem|
+
+2.Jelaskan fungsi tiap perintah dan arti kolom permission (rwxr-xr--).
+
+Jawab : # rwx adalah hak mengakses file pemilik 
+        * r artinya boleh baca 
+        * w artinya boleh ubah/tulis
+        * x artinya boleh dijalankan/ dieksekusi
+        #(r-x) adalah hak mengakses file grup
+        * r boleh baca
+        * - tidak boleh diubah
+        * x boleh dijalankan
+        # (---)  adalah hak akses untuk lainnya atau publik
+        * - tidak ada izin baca,tulis,maupun jalankan 
+
+3.Analisis peran chmod dan chown dalam keamanan sistem Linux.
+
+Peran chmod dan chown dalam keadaan sistem Linux itu sangat penting untuk menjaga keamanan file dan folder .
+
+* chmod yaitu mengatur siapa saja yang boleh membaca,menguubah ,atau menjalankan file.Misalnya hanya pemilik yang boleh mengubah,tapi yang lain hanya boleh melihat atau tidak boleh sama sekali.Chmod mencegah file diubah atau dijalankan sembarangan orang lain. 
+
+* Chown berperan untuk menentukan siapa pemilik file itu,hanya orang tertentu yang punya kontrol penuh dan bisa mengatur izin file tersebut.Jika pemilik dan grup diatur dengan benar,maka akses ke file menjadi lebih terjaga. 
 ---
 
 ## Quiz
@@ -148,11 +172,13 @@ contoh |Chown user file.txt|Chomod 755 file.txt|
 tujuan|Atur siapa pemilik file|Atur siapa yang bisa akses|
 siapa yang bisa akses|Pemilik/admin|Pemilik filedan admin|
 Perhatian khusus|Harus punya izin atau sebagai root|Digunakan untuk membatasi atau memberi akses|
+
 ## Refleksi Diri
 Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
+- Apa bagian yang paling menantang minggu ini?
+ Yang paling menantang minguu ini adalah saat saya mendownload ubuntu karena saya selama praktikum belum memakai ubuntu jadi saya baru mendownload,kenapa menantang? ya karena cara downloadnya yang cukup rumit dan lama prosesnya. 
 - Bagaimana cara Anda mengatasinya?  
-
+Cara saya mengatasinya dengan menonton tutorial di youtobe jika masih blm bisa saya mencari turotial lainnya 
 ---
 
 **Credit:**  
