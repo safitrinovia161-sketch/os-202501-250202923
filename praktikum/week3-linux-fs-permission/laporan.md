@@ -117,15 +117,40 @@ Sertakan screenshot hasil percobaan atau diagram:
 
 Catat direktori aktif, isi folder, dan file tersembunyi (jika ada).
 Jawab: 
- 
+ | Perintah | Hasil |Penjelasan|
+| :--- | :---|:---|
+pwd|/home/safitrinovia|Menampilkan direktori aktif saat ini,yaitu lokasi ketika sedang berada di sistem file|
+ls -1|Total 0|Direktori /home/safitrinovia/ kosong atau tidak ada file atau folder|
+cd /tmp|Direktori aktif berubah menjadi /tmp|Berpindah ke direktori /tmp,yaitu direktori sementara yang digunakan sistem | 
+ls -a|.  ..  X11-unix  snap-private-tmp  systemd-private-...|Didalam /tmp terdapat beberapa folder sementara yang digunakan oleh sistem Linux dan menampilkan semua isi direktori ,termasuk file tersembunyi yang diawali dengan titik(.|) 
 
+2.Jelaskan isi file dan struktur barisnya (user, UID, GID, home, shell).
 
+    root:x:0:0:root:/root:/bin/bash
+    daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+    bin:x:2:2:bin:/bin:/usr/sbin/nologin
+    sys:x:3:3:sys:/dev:/usr/sbin/nologin
+    sync:x:4:65534:sync:/bin:/bin/sync
+
+- Username : Nama pengguna yang digunakan untuk login 
+- Password : Biasanya berisi (x) artinya password disimpan terenkripsi difile /etc/shadow
+- UID(user ID: Nomor unik identitas pengguna. 0 untuk root (administrator),1-999 untuk user sistem dan 1000+ untuk user biasa
+- GID (group ID): Nomor identitas grup utama pengguna
+- User Info(comment):Deskripsi singkat atau nama lengkap pengguna
+- Home Directory:Lokasi folder utama pengguna
+- Shell : Program shell yang dijalankan saat pengguna login misalnya /bin/bash atau /usr/sbin/nologin      
+
+3.Analisis perbedaan sebelum dan sesudah chmod.
+
+| Kondisi|Izin file|Akses pemilik|Akses grup|Akses lainnya|Keterangan|
+| :--- | :---|:---|:---|:---|:---|
+Sebelum chmod|rw-r-r--|Baca & tulis|Baca|Baca|File bisa dilihat semua pengguna |
+Sesudah chmod 600|rw-------|Baca&tulis|Tidak ada|Tidak ada|File hanya bisa diakses pemilik|
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
-
+Praktikum ini menunjukan cara kerja manajemen file dan hak akses di Linux,serta pentingnya memahami perintah dasar dan pengaturan izin file untuk menjaga keamanan dan keteraturan ssitem.
 ## Tugas
  1.Dokumentasikan hasil seluruh perintah pada tabel observasi 
 | No | Perintah | Fungsi|Hasil/output|Keterangan|
