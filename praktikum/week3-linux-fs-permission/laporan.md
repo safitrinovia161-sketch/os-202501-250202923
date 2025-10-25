@@ -87,9 +87,21 @@ Commit & Push
 ## Kode / Perintah
 Tuliskan potongan kode atau perintah utama:
 ```bash
-uname -a
-lsmod | head
-dmesg | head
+pwd
+ls -l
+cd /tmp
+ls -a
+
+cat /etc/passwd | head -n 5
+
+echo "Hello <NAME><NIM>" > percobaan.txt
+ls -l percobaan.txt
+chmod 600 percobaan.txt
+ls -l percobaan.txt
+
+sudo chown root percobaan.txt
+ls -l percobaan.txt
+
 ```
 
 ---
@@ -101,11 +113,12 @@ Sertakan screenshot hasil percobaan atau diagram:
 ---
 
 ## Analisis
-- Jelaskan makna hasil percobaan.
+1.Jelaskan hasil tiap perintah.
 
+Catat direktori aktif, isi folder, dan file tersembunyi (jika ada).
+Jawab: 
  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+
 
 ---
 
