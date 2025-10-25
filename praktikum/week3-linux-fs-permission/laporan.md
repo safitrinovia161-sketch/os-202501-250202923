@@ -1,6 +1,6 @@
 
 # Laporan Praktikum Minggu [X]
-Topik: Arsitektur Sistem Operasi dan Kernel
+Topik: Linux fs Permission
 
 ---
 
@@ -110,6 +110,21 @@ Sertakan screenshot hasil percobaan atau diagram:
 ## Kesimpulan
 Tuliskan 2–3 poin kesimpulan dari praktikum ini.
 
+
+## Tugas 
+| No | Perintah | Fungsi|Hasil/output|Keterangan|
+| :--- | :---|:---|:---|:---|
+1|pwd|Menampilkan direktori aktif|/home/safitrinovia/|Pengguna sedang berada di direktori homenya sendiri|
+2| ls -l|Menampilkan daftar isi direktori beserta detailnya seperti izin akses,user,ukuran,waktu,nama dan file|Total 0|Direktori /home/novia safitri tidak memiliki file apapun |
+3|cd /tmp|Pindah ke direktori sementara /tmp|Tidak ada hasil/output|Mengubah posisi kerja aktif menjadi /tmp, tempat file sementara sistem disimpan|
+4|ls -a|Menmapilkan semua file di direktori,termasuk file tersembunyi yang awali dengan titik(".")|    .   ..   X11-unix   snap-private-tmp   systemd-private-...|( .) direktori saat ini dan (..)direktori induk serta dotfiles|
+5|cat /etc/passwd l head -n 5|Menampilkan 5 baris pertama akun pengguna disistem||cat keluarkan isi /etc/passwd → | (pipe) meneruskan ke head -n 5 untuk hanya melihat 5 baris teratasy yaitu user root memiliki UID 0, GID 0, direktori home /root, dan shell /bin/bash |
+6|echo "Hello <NOVIA SAFITRI><25020923>" > percobaan.txt|Membuat file baru  dan menuliskan teks "Hello<NOVIA SAFITRI><25020923>"ke dalamnya |Tidak ada output/ hasil|echo keluarkan string → > redirect menulis ke file (membuat baru atau menimpa file lama)|
+7|ls -l percobaan.txt|Menampilkan detail file seperti user,izin,ukuran|    -rw-r--r-- 1 safitrinovia safitrinovia 32 Oct 24 20:34 percobaan.txt| -rw-r--r-- 1 safitrinovia safitrinovia ... → pemilik safitrinovia, izin baca/tulis untuk pemilik, baca untuk grup/lain|
+8|chmod 600 percobaan.txt|Mengubah izin akses file menjadi r-x------|tidak ada output|File hanya bisa dibaca dan dijalankan oleh pemilik(NOVIA SAFITRI), tidak bisa diubah oleh pengguna lain|
+9|ls -l percobaan.txt|Mengecek perubahan izin |-rw-------1 safitrinovia safitrinovia 32 Oct 24 20:34 percobaan.txt|Terbaca bahwa izin file sudah berubah, grup dan pengguna lain sudah tidak memiliki akses sama sekali|
+10|sudo chown root percobaan.txt|Mengubah kepemilikan file menjadi milik pengguna yaitu novia safitri menjadi root|Sekarang file dimiliki oleh root, bukan lagi oleh safitrinovia|chown ubah pemilik/grup dari file; sudo jalankan perintah sebagai admin.Dan sekarang hanya root yang berhak mengakses file seutuhnya|
+11|ls -l percobaan.txt|Mengecek perubahan kepemilikan|-rw------- 1 root NOVIA SAFITRI 32 Oct 24 20:34 percobaan.txt|Sekarang pemilik file adalah root sedangkan grup masih milik evelin dan file sudah menjadi milik sistem|
 ---
 
 ## Quiz
